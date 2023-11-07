@@ -1,0 +1,49 @@
+*{
+  font-size: large;
+}
+
+.mainContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+}
+
+.clickable {
+  color: blue;
+  cursor: pointer;
+}
+
+.clickable:hover {
+  text-decoration: underline;
+}
+
+.ul {
+  list-style-type: none;
+}
+
+.input {
+  width: 25%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  height: 15px;
+}
+
+.valueText {
+  height: 10px;
+  width: 25%;
+  margin-bottom: 15px;
+  color: gray;
+}
+
+.nested {
+  margin-left: 20px;
+}
+
+.result {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 50%;
+}
