@@ -1,0 +1,26 @@
+*{
+  font-size: large;
+}
+
+.input {
+  width: 25%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  height: 20px;
+}
+
+.valueText {
+  height: 10px;
+  width: 25%;
+  margin-bottom: 15px;
+  color: gray;
+}
+
+.mainContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+}

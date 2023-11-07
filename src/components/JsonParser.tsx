@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo } from "react";
 import styles from "./JsonParser.module.css";
 
 type Field = {
@@ -12,20 +12,13 @@ interface JsonData {
   [key: string]: string | boolean | Array<Field>;
 }
 
-const JsonParser = ({ jsonData }: { jsonData: JsonData }) => {
-  console.log("rendering");
-  const [keyText, setKeyText] = useState("");
-  const [valueText, setValueText] = useState("");
-
-  const hanleClick = (key: string, value: string | boolean, idx = -1) => {
-    if (idx !== -1) {
-      setKeyText(`res.fields[${idx}].${key}`);
-    } else {
-      setKeyText(`res.${key}`);
-    }
-    setValueText(`${value}`);
-  };
-
+const JsonParser = ({
+  jsonData,
+  handleClick,
+}: {
+  jsonData: JsonData;
+  handleClick: (key: string, value: string | boolean, idx?: number) => void;
+}) => {
   const convertValue = (value: string | boolean) => {
     if (typeof value === "string") {
       return `'${value}'`;
@@ -56,13 +49,13 @@ const JsonParser = ({ jsonData }: { jsonData: JsonData }) => {
                         const idx = (jsonData.fields as Array<Field>).findIndex(
                           (field: Field) => field.id === data.id
                         );
-                        hanleClick(
+                        handleClick(
                           dataKey,
                           data[dataKey] as string | boolean,
                           idx
                         );
                       } else {
-                        hanleClick(dataKey, data[dataKey] as string | boolean);
+                        handleClick(dataKey, data[dataKey] as string | boolean);
                       }
                     }}
                     className={styles.clickable}
@@ -83,13 +76,13 @@ const JsonParser = ({ jsonData }: { jsonData: JsonData }) => {
   };
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.input}>{keyText}</div>
-      <span className={styles.valueText}>{valueText}</span>
+    <div className={styles.mainTreeContainer}>
       <span>Response</span>
       <div className={styles.result}>{renderTree(jsonData)}</div>
     </div>
   );
 };
 
-export default JsonParser;
+const Parser = memo(JsonParser);
+
+export default Parser;
